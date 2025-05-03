@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">EChatBotProject</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="no_account">Don\'t have an account?</string>
 </resources>
