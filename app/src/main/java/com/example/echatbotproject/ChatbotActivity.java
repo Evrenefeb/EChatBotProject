@@ -1,15 +1,20 @@
 package com.example.echatbotproject;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 // Importing base activity class
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class ChatbotActivity extends AppCompatActivity{
 
@@ -24,6 +29,7 @@ public class ChatbotActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_chatbot);
 
         // Initialize UI elements
         recyclerViewChat = findViewById(R.id.recyclerViewChat);
@@ -39,5 +45,24 @@ public class ChatbotActivity extends AppCompatActivity{
 
         // TODO: Load Chat History
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.chatbot_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.action_settings){
+            Intent intent = new Intent(ChatbotActivity.this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

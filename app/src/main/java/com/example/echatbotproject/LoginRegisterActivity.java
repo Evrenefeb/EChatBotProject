@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import android.content.Intent;
+
 public class LoginRegisterActivity extends AppCompatActivity{
 
     // Properties
@@ -34,12 +36,32 @@ public class LoginRegisterActivity extends AppCompatActivity{
 
         // Initialize Event Listeners
         buttonLogin.setOnClickListener(v -> {
-            // TODO: Handle login logic
+            loginOnClickEvent();
         });
 
         buttonRegister.setOnClickListener(v -> {
-            // TODO: Handle registration logic
+            registerOnClickEvent();
         });
+    }
+
+    // Event Listeners
+
+    private void loginOnClickEvent(){
+        // TODO: Handle login logic
+        // ...
+        // If login is successful:
+        Intent intent = new Intent(LoginRegisterActivity.this, ChatbotActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void registerOnClickEvent(){
+        // TODO: Handle registration logic here
+        // ...
+        // If registration is successful:
+        Intent intent = new Intent(LoginRegisterActivity.this, ChatbotActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     // TODO: Implement Methods for handling login and registration

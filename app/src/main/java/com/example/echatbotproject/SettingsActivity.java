@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 // Importing base activity class
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Switch;
@@ -39,6 +40,10 @@ public class SettingsActivity extends AppCompatActivity{
 
         buttonLogout.setOnClickListener(v -> {
             // TODO: Handle logout logic
+            // ...
+            Intent intent = new Intent(SettingsActivity.this, LoginRegisterActivity.class);
+            startActivity(intent);
+            finish();
         });
 
         buttonSave.setOnClickListener(v -> {
