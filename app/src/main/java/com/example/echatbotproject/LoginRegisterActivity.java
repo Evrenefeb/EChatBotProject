@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.widget.Toast;
 
 // Importing firebase auth
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
@@ -35,6 +36,13 @@ public class LoginRegisterActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login_register);
+
+
+        // Initialize Firebase if it hasn't been already
+        if(FirebaseApp.getApps(this).isEmpty()){
+            FirebaseApp.initializeApp(this);
+        }
 
         // Initialize UI elements
         editTextUsername = findViewById(R.id.editTextUsername);
