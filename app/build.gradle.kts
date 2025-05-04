@@ -50,15 +50,11 @@ dependencies {
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
 
-    // Add the dependencies for any other desired Firebase products
-    // https://firebase.google.com/docs/android/setup#available-libraries
-
     // Firebase Authentication
-    implementation("com.google.firebase:firebase-auth:23.2.0") // Use the latest version
+    implementation("com.google.firebase:firebase-auth")
     // Latest : 23.2.0
 
     // Firebase Firestore
-    implementation("com.google.firebase:firebase-firestore:25.1.4") // Use the latest version
+    implementation("com.google.firebase:firebase-firestore")
     // Latest : 25.1.4
-
 }
