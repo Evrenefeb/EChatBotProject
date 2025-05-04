@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.widget.Toast;
 
 // Importing firebase auth
+import com.example.echatbotproject.genai.GeminiHelper;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -35,6 +36,15 @@ public class LoginRegisterActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
+        // AI TEST
+
+        GeminiHelper geminiHelper = new GeminiHelper();
+        geminiHelper.modelCall();
+
+        // AI TEST
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_register);
 

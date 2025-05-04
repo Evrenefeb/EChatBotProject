@@ -44,17 +44,23 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 
     // Import the Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
+    implementation(platform(libs.firebase.bom))
 
     // TODO: Add the dependencies for Firebase products you want to use
     // When using the BoM, don't specify versions in Firebase dependencies
-    implementation("com.google.firebase:firebase-analytics")
+    implementation(libs.firebase.analytics)
 
     // Firebase Authentication
-    implementation("com.google.firebase:firebase-auth")
+    implementation(libs.firebase.auth)
     // Latest : 23.2.0
 
     // Firebase Firestore
-    implementation("com.google.firebase:firebase-firestore")
+    implementation(libs.firebase.firestore)
     // Latest : 25.1.4
+
+    implementation("com.google.ai.client.generativeai:generativeai:0.1.0")
+
+    implementation("com.google.guava:guava:31.0.1-android")
+    implementation("org.reactivestreams:reactive-streams:1.0.4")
+
 }
