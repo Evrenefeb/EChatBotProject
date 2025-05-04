@@ -25,9 +25,9 @@ public class GeminiHelper {
         GenerativeModelFutures modelFutures = GenerativeModelFutures.from(generativeModel);
 
 
-
+        // TODO: Move on and Improve from here!
         Content content = new Content.Builder()
-                .addText("Write an essay about backpacks.")
+                .addText("Write an essay about backpacks.") // Works
                 .build();
 
         ListenableFuture<GenerateContentResponse> response = modelFutures.generateContent(content);
