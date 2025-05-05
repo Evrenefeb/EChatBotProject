@@ -1,4 +1,4 @@
-package com.example.echatbotproject;
+package com.example.echatbotproject.concretes;
 
 import androidx.annotation.Nullable;
 
@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Switch;
+
+import com.example.echatbotproject.R;
 
 public class SettingsActivity extends AppCompatActivity{
 

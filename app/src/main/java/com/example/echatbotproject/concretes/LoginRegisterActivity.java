@@ -1,4 +1,4 @@
-package com.example.echatbotproject;
+package com.example.echatbotproject.concretes;
 
 import androidx.annotation.Nullable;
 
@@ -16,7 +16,7 @@ import android.content.Intent;
 import android.widget.Toast;
 
 // Importing firebase auth
-import com.example.echatbotproject.genai.GeminiHelper;
+import com.example.echatbotproject.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 

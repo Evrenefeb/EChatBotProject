@@ -1,12 +1,9 @@
-package com.example.echatbotproject;
+package com.example.echatbotproject.concretes;
 
 import android.app.Application;
 
 // Importing Firebase App
-import com.example.echatbotproject.genai.GeminiHelper;
 import com.google.firebase.FirebaseApp;
-
-import java.io.IOException;
 
 public class MyApplication extends Application {
 

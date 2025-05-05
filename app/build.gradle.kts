@@ -1,7 +1,18 @@
+import java.io.FileInputStream
+import java.io.InputStream
+import java.util.Properties
+
+
 plugins {
     id("com.google.gms.google-services")
-
     alias(libs.plugins.android.application)
+}
+
+var localProperties = Properties().apply {
+    val localPropertiesFile = rootProject.file("local.properties")
+    if(localPropertiesFile.exists()) {
+        load(localPropertiesFile.inputStream())
+    }
 }
 
 android {
@@ -9,6 +20,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
+
         applicationId = "com.example.echatbotproject"
         minSdk = 30
         targetSdk = 35
@@ -16,6 +28,23 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+
+        // Hidden Properties added
+        val apiKey = localProperties.getProperty("API_KEY")
+        val modelName = localProperties.getProperty("MODEL_NAME")
+
+        buildConfigField("String", "API_KEY", apiKey)
+        buildConfigField("String", "MODEL_NAME", modelName)
+
+
+
+
+    }
+
+
+    buildFeatures{
+        buildConfig = true
     }
 
     buildTypes {

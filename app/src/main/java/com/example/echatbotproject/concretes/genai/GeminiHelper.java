@@ -1,4 +1,4 @@
-package com.example.echatbotproject.genai;
+package com.example.echatbotproject.concretes.genai;
 
 import android.util.Log;
 
