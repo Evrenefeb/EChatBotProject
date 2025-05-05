@@ -15,7 +15,7 @@ import java.util.concurrent.Executors;
 
 public class GeminiHelper {
 
-    private String API_KEY = "AIzaSyDQuLWZHYTK1mXOgBlhOhXM6YOXVZQJfHE";
+    private String API_KEY = " ";
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     public void modelCall(){
