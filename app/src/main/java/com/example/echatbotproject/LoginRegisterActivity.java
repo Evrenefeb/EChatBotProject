@@ -40,8 +40,8 @@ public class LoginRegisterActivity extends AppCompatActivity{
         // AI TEST
 
         // TODO: Remove this part after testing
-        GeminiHelper geminiHelper = new GeminiHelper();
-        geminiHelper.modelCall();
+        //GeminiHelper geminiHelper = new GeminiHelper();
+        //geminiHelper.modelCall();
 
         // AI TEST
 
