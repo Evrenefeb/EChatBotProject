@@ -2,6 +2,7 @@ package com.example.echatbotproject.concretes;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -68,16 +69,18 @@ public class SettingsActivity extends AppCompatActivity {
 
         buttonSave.setOnClickListener(v -> {
             saveSettings();
+            applyTheme(switchDarkMode.isChecked());
             Toast.makeText(this, "Settings Saved", Toast.LENGTH_SHORT).show();
         });
 
-        // No immediate saving on switch/radio button changes anymore
+        
     }
 
     private void loadSettings() {
         // Load dark mode preference
         boolean darkMode = sharedPreferences.getBoolean("darkMode", false);
         switchDarkMode.setChecked(darkMode);
+        applyTheme(darkMode);
         // TODO: Apply dark mode theme based on preference
 
         // Load clear history preference
@@ -121,5 +124,13 @@ public class SettingsActivity extends AppCompatActivity {
         editor.putBoolean("stayLoggedIn", switchStayLoggedIn.isChecked());
 
         editor.apply();
+    }
+
+    private void applyTheme(boolean isDarkMode) {
+        if (isDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 }
