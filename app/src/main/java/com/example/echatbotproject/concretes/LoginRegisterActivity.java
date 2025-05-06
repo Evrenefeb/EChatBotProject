@@ -1,6 +1,7 @@
 package com.example.echatbotproject.concretes;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,11 +32,15 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Apply saved theme as early as possible
+        sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        boolean darkMode = sharedPreferences.getBoolean("darkMode", false);
+        applyTheme(darkMode);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_register);
 
         mAuth = FirebaseAuth.getInstance();
-        sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE);
 
         // Check if user is already logged in and "Stay logged in" is enabled
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -58,6 +63,14 @@ public class LoginRegisterActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginRegisterActivity.this, MainActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void applyTheme(boolean isDarkMode) {
+        if (isDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
     private void loginOnClickEvent() {
