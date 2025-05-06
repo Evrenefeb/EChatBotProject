@@ -8,49 +8,106 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp" />
+        android:text="Appearance"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:layout_marginBottom="8dp" />
 
-    <LinearLayout
+    <Switch
+        android:id="@+id/switchDarkMode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:text="Dark Mode"
+        android:layout_marginBottom="16dp" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Dark Mode" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:layout_marginBottom="16dp" />
 
-        <Switch
-            android:id="@+id/switchDarkMode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/buttonClearHistory"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Clear History"
-        android:layout_marginTop="16dp" />
+        android:text="Chat History"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear history automatically after:"
+        android:layout_marginBottom="8dp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupClearHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <RadioButton
+            android:id="@+id/radio30Days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30 Days" />
+
+        <RadioButton
+            android:id="@+id/radio60Days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="60 Days" />
+
+        <RadioButton
+            android:id="@+id/radio90Days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="90 Days" />
+
+        <RadioButton
+            android:id="@+id/radioNever"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Never"
+            android:checked="true" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/buttonClearHistoryNow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear History Now"
+        android:layout_marginBottom="16dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Account"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:layout_marginBottom="8dp" />
+
+    <Switch
+        android:id="@+id/switchStayLoggedIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stay logged in"
+        android:layout_marginBottom="16dp" />
 
     <Button
         android:id="@+id/buttonLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log Out"
-        android:layout_marginTop="8dp" />
+        android:text="Logout"
+        android:layout_marginBottom="8dp" />
 
     <Button
         android:id="@+id/buttonSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save Settings"
-        android:layout_marginTop="16dp" />
+        android:text="Save Settings" />
 
 </LinearLayout>

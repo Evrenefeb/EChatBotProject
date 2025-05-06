@@ -6,4 +6,8 @@
 
     <style name="Theme.EChatBotProject.ActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
     </style>
+
+    <style name="ThemeOverlay.EChatBotProject.ActionBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorControlNormal">?attr/colorOnPrimary</item>
+    </style>
 </resources>

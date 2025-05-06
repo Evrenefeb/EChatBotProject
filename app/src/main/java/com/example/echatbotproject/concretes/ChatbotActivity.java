@@ -2,21 +2,20 @@ package com.example.echatbotproject.concretes;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-// Importing base activity class
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
-
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.echatbotproject.BuildConfig;
 import com.example.echatbotproject.R;
@@ -29,6 +28,8 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.core.content.ContextCompat;
+import android.graphics.drawable.ColorDrawable;
 
 
 public class ChatbotActivity extends AppCompatActivity implements ModelResponseCallback {
@@ -43,31 +44,47 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
     private ChatAdapter chatAdapter;
     private List<ChatMessage> chatMessages;
     private GeminiHelper geminiHelper;
-
+    private SharedPreferences sharedPreferences;
 
     // Overriden Methods
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE);
         init();
 
 
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        boolean clearHistoryNow = sharedPreferences.getBoolean("clearHistoryNow", false);
+        if (clearHistoryNow) {
+            chatMessages.clear();
+            chatAdapter.notifyDataSetChanged();
+            sharedPreferences.edit().putBoolean("clearHistoryNow", false).apply(); // Reset the flag
 
-        // TODO: Load Chat History
-        //loadHistory();
+            Toolbar toolbar = findViewById(R.id.toolbarChat);
+            setSupportActionBar(toolbar);
+
+            // Set the theme overlay to the Toolbar's context
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setTitle("");
+            }
+        }
     }
 
     // Private Methods
 
-    private void init(){
+    private void init() {
         initFrontend();
         initBackend();
         initEventListeners();
     }
 
-    private void initBackend(){
+    private void initBackend() {
         // Initialize Backend elements and connect them with frontend
         chatMessages = new ArrayList<>();
         chatAdapter = new ChatAdapter(chatMessages);
@@ -77,7 +94,7 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
         geminiHelper = new GeminiHelper(API_KEY, MODEL_NAME, this);
     }
 
-    private void initFrontend(){
+    private void initFrontend() {
         // Initialize UI elements
         setContentView(R.layout.activity_chatbot);
         recyclerViewChat = findViewById(R.id.recyclerViewChat);
@@ -85,24 +102,22 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
         buttonSend = findViewById(R.id.buttonSend);
     }
 
-    private void initEventListeners(){
+    private void initEventListeners() {
         // Initialize Event Listeners
         buttonSend.setOnClickListener(v -> {
             sendOnClickEvent();
         });
     }
 
-
-    private void addMessage(String message, boolean isUser){
+    private void addMessage(String message, boolean isUser) {
         chatMessages.add(new ChatMessage(message, isUser));
         chatAdapter.notifyItemInserted(chatMessages.size() - 1);
         recyclerViewChat.scrollToPosition(chatMessages.size() - 1);
     }
 
-    private void loadHistory(){
+    private void loadHistory() {
         // TODO: Implement loading chat history from local device
     }
-
 
     // Overriden Methods
 
@@ -110,21 +125,19 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.chatbot_menu, menu);
         return true;
-
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.action_settings){
+        if (id == R.id.action_settings) {
             Intent intent = new Intent(ChatbotActivity.this, SettingsActivity.class);
             startActivity(intent);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
-
     }
 
     @Override // Add Model response to chat
@@ -142,19 +155,17 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
     }
 
     // Event Listeners
-    private void sendOnClickEvent(){
+    private void sendOnClickEvent() {
         String userMessage = editTextMessage.getText().toString().trim();
-        if(!TextUtils.isEmpty(userMessage)){
+        if (!TextUtils.isEmpty(userMessage)) {
             addMessage(userMessage, true);
             editTextMessage.setText("");
             geminiHelper.generateResponse(userMessage);
         }
     }
-
-
 }
