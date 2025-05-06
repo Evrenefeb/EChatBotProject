@@ -131,9 +131,9 @@ public class LoginRegisterActivity extends AppCompatActivity{
         // TODO: Handle login logic
         // ...
         // If login is successful:
-        Intent intent = new Intent(LoginRegisterActivity.this, ChatbotActivity.class);
-        startActivity(intent);
-        finish();
+        //Intent intent = new Intent(LoginRegisterActivity.this, ChatbotActivity.class);
+        //startActivity(intent);
+        //finish();
     }
 
     private void registerOnClickEvent(){

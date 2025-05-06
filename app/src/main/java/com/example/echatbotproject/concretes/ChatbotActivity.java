@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.echatbotproject.BuildConfig;
 import com.example.echatbotproject.R;
 import com.example.echatbotproject.abstracts.interfaces.ModelResponseCallback;
 import com.example.echatbotproject.concretes.chatting.ChatAdapter;
@@ -34,8 +35,8 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
 
     // Properties
     private final String TAG = "CHATBOTACTIVITY";
-    private final String API_KEY = null;
-    private final String MODEL_NAME = null;
+    private final String API_KEY = BuildConfig.API_KEY;
+    private final String MODEL_NAME = BuildConfig.MODEL_NAME;
     private RecyclerView recyclerViewChat;
     private EditText editTextMessage;
     private Button buttonSend;
@@ -51,6 +52,8 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
         super.onCreate(savedInstanceState);
         init();
 
+
+
         // TODO: Load Chat History
         //loadHistory();
     }
@@ -58,8 +61,8 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
     // Private Methods
 
     private void init(){
-        initBackend();
         initFrontend();
+        initBackend();
         initEventListeners();
     }
 
