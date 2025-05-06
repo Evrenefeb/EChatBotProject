@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.EChatBotProject" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.EChatBotProject" parent="Theme.AppCompat.Light.NoActionBar">
     </style>
 
     <style name="Theme.EChatBotProject" parent="Base.Theme.EChatBotProject" />
+
+    <style name="Theme.EChatBotProject.ActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    </style>
 </resources>

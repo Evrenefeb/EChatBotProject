@@ -54,6 +54,7 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
 
 
 
+
         // TODO: Load Chat History
         //loadHistory();
     }
@@ -109,6 +110,7 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.chatbot_menu, menu);
         return true;
+
     }
 
     @Override
@@ -122,6 +124,7 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
         }
 
         return super.onOptionsItemSelected(item);
+
     }
 
     @Override // Add Model response to chat

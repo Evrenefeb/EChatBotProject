@@ -5,4 +5,5 @@
     <string name="username_hint">Username</string>
     <string name="password_hint">Password</string>
     <string name="no_account">Don\'t have an account?</string>
+    <string name="action_settings">Settings</string>
 </resources>
