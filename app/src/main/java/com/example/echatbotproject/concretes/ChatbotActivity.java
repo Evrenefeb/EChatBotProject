@@ -130,17 +130,6 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
             chatMessages = new ArrayList<>();
         }
 
-        // TEMPORARY CODE FOR TESTING AUTO-CLEAR (REMOVE LATER!)
-        if (chatMessages.isEmpty()) {
-            long thirtyOneDaysAgo = new Date().getTime() - TimeUnit.DAYS.toMillis(31);
-            long sixtyOneDaysAgo = new Date().getTime() - TimeUnit.DAYS.toMillis(61);
-            chatMessages.add(new ChatMessage("Old message 1 (31 days)", false));
-            chatMessages.get(0).setTimestamp(thirtyOneDaysAgo);
-            chatMessages.add(new ChatMessage("Old message 2 (61 days)", true));
-            chatMessages.get(1).setTimestamp(sixtyOneDaysAgo);
-            chatMessages.add(new ChatMessage("New message", false));
-        }
-        // END OF TEMPORARY CODE
     }
 
     private void saveHistory() {

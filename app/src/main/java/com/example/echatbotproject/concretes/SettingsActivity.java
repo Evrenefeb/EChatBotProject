@@ -53,15 +53,8 @@ public class SettingsActivity extends AppCompatActivity {
         // Load saved settings
         loadSettings();
 
-        // Initialize Event Listeners
-        switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            // TODO: Handle dark mode toggle logic
-            sharedPreferences.edit().putBoolean("darkMode", isChecked).apply();
-            // TODO: Apply dark mode theme immediately
-        });
-
+        // Initialize Event Listeners (only for immediate actions like Logout and Clear Now)
         buttonClearHistoryNow.setOnClickListener(v -> {
-            // Set a flag to tell ChatbotActivity to clear history on resume
             sharedPreferences.edit().putBoolean("clearHistoryNow", true).apply();
             Toast.makeText(this, "Chat history will be cleared when you return to the chat.", Toast.LENGTH_SHORT).show();
         });
@@ -77,6 +70,8 @@ public class SettingsActivity extends AppCompatActivity {
             saveSettings();
             Toast.makeText(this, "Settings Saved", Toast.LENGTH_SHORT).show();
         });
+
+        // No immediate saving on switch/radio button changes anymore
     }
 
     private void loadSettings() {
