@@ -30,7 +30,8 @@
         <activity
             android:name=".concretes.SettingsActivity"
             android:exported="false"
-            android:theme="@style/Theme.EChatBotProject" /> <activity
+            android:theme="@style/Theme.EChatBotProject"
+            /> <activity
         android:name=".concretes.MainActivity"
         android:exported="false"
         android:theme="@style/Theme.EChatBotProject" /> </application>

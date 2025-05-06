@@ -73,7 +73,7 @@ public class SettingsActivity extends AppCompatActivity {
             Toast.makeText(this, "Settings Saved", Toast.LENGTH_SHORT).show();
         });
 
-        
+
     }
 
     private void loadSettings() {

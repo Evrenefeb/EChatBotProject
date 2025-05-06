@@ -1,10 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.EChatBotProject" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/red_500</item>
+        <item name="colorPrimaryVariant">@color/red_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/lime_200</item>
+        <item name="colorSecondaryVariant">@color/lime_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
 
     <style name="Theme.EChatBotProject" parent="Base.Theme.EChatBotProject" />
 
     <style name="Theme.EChatBotProject.ActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/red_500</item>
+        <item name="colorPrimaryVariant">@color/red_700</item>
+        <item name="colorOnPrimary">@color/white</item>
     </style>
 
     <style name="ThemeOverlay.EChatBotProject.ActionBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
