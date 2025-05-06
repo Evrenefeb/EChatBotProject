@@ -3,7 +3,6 @@ package com.example.echatbotproject.concretes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,13 +23,14 @@ import com.example.echatbotproject.concretes.chatting.ChatAdapter;
 import com.example.echatbotproject.concretes.chatting.ChatMessage;
 import com.example.echatbotproject.concretes.genai.GeminiHelper;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import androidx.core.content.ContextCompat;
-import android.graphics.drawable.ColorDrawable;
-
+import java.util.concurrent.TimeUnit;
 
 public class ChatbotActivity extends AppCompatActivity implements ModelResponseCallback {
 
@@ -45,6 +45,9 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
     private List<ChatMessage> chatMessages;
     private GeminiHelper geminiHelper;
     private SharedPreferences sharedPreferences;
+    private Gson gson;
+
+    private static final String CHAT_HISTORY_KEY = "chatHistory";
 
     // Overriden Methods
 
@@ -52,9 +55,9 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        gson = new Gson();
+        loadHistory(); // Load history on create
         init();
-
-
     }
 
     @Override
@@ -63,17 +66,17 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
         boolean clearHistoryNow = sharedPreferences.getBoolean("clearHistoryNow", false);
         if (clearHistoryNow) {
             chatMessages.clear();
+            saveHistory(); // Save the cleared history
             chatAdapter.notifyDataSetChanged();
             sharedPreferences.edit().putBoolean("clearHistoryNow", false).apply(); // Reset the flag
-
-            Toolbar toolbar = findViewById(R.id.toolbarChat);
-            setSupportActionBar(toolbar);
-
-            // Set the theme overlay to the Toolbar's context
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setTitle("");
-            }
         }
+        checkForAutoClearHistory(); // Check for auto-clear on resume
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveHistory(); // Save history when activity is paused
     }
 
     // Private Methods
@@ -86,7 +89,6 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
 
     private void initBackend() {
         // Initialize Backend elements and connect them with frontend
-        chatMessages = new ArrayList<>();
         chatAdapter = new ChatAdapter(chatMessages);
         recyclerViewChat.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewChat.setAdapter(chatAdapter);
@@ -113,10 +115,74 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
         chatMessages.add(new ChatMessage(message, isUser));
         chatAdapter.notifyItemInserted(chatMessages.size() - 1);
         recyclerViewChat.scrollToPosition(chatMessages.size() - 1);
+        saveHistory(); // Save history after adding a message
     }
 
     private void loadHistory() {
-        // TODO: Implement loading chat history from local device
+        String json = sharedPreferences.getString(CHAT_HISTORY_KEY, null);
+        if (json != null) {
+            Type listType = new TypeToken<ArrayList<ChatMessage>>() {}.getType();
+            chatMessages = gson.fromJson(json, listType);
+            if (chatMessages == null) {
+                chatMessages = new ArrayList<>();
+            }
+        } else {
+            chatMessages = new ArrayList<>();
+        }
+
+        // TEMPORARY CODE FOR TESTING AUTO-CLEAR (REMOVE LATER!)
+        if (chatMessages.isEmpty()) {
+            long thirtyOneDaysAgo = new Date().getTime() - TimeUnit.DAYS.toMillis(31);
+            long sixtyOneDaysAgo = new Date().getTime() - TimeUnit.DAYS.toMillis(61);
+            chatMessages.add(new ChatMessage("Old message 1 (31 days)", false));
+            chatMessages.get(0).setTimestamp(thirtyOneDaysAgo);
+            chatMessages.add(new ChatMessage("Old message 2 (61 days)", true));
+            chatMessages.get(1).setTimestamp(sixtyOneDaysAgo);
+            chatMessages.add(new ChatMessage("New message", false));
+        }
+        // END OF TEMPORARY CODE
+    }
+
+    private void saveHistory() {
+        String json = gson.toJson(chatMessages);
+        sharedPreferences.edit().putString(CHAT_HISTORY_KEY, json).apply();
+    }
+
+    private void checkForAutoClearHistory() {
+        String interval = sharedPreferences.getString("clearHistoryInterval", "never");
+        long cutoffTime = 0;
+
+        long currentTime = new Date().getTime();
+
+        switch (interval) {
+            case "30":
+                cutoffTime = currentTime - TimeUnit.DAYS.toMillis(30);
+                break;
+            case "60":
+                cutoffTime = currentTime - TimeUnit.DAYS.toMillis(60);
+                break;
+            case "90":
+                cutoffTime = currentTime - TimeUnit.DAYS.toMillis(90);
+                break;
+            case "never":
+            default:
+                return; // Do not clear if set to never
+        }
+
+        List<ChatMessage> newMessages = new ArrayList<>();
+        for (ChatMessage message : chatMessages) {
+            if (message.getTimestamp() >= cutoffTime) {
+                newMessages.add(message);
+            }
+        }
+
+        if (newMessages.size() < chatMessages.size()) {
+            chatMessages.clear();
+            chatMessages.addAll(newMessages);
+            saveHistory();
+            chatAdapter.notifyDataSetChanged();
+            Log.i(TAG, "Chat history automatically cleared (older than " + interval + " days).");
+        }
     }
 
     // Overriden Methods

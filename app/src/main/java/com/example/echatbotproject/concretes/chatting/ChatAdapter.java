@@ -32,7 +32,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
         ChatMessage message = messages.get(position);
-        holder.messageTextView.setText(message.getText());
+        holder.messageTextView.setText(message.getMessage());
         // You can add logic here to style user vs. bot messages differently
         if (message.isUser()) {
             holder.messageTextView.setBackgroundResource(android.R.color.holo_blue_light);
