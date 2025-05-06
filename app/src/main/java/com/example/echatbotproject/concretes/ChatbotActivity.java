@@ -126,7 +126,10 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
 
     @Override // Add Model response to chat
     public void onSuccess(String responseMessage) {
-        addMessage(responseMessage, false);
+        runOnUiThread(() -> {
+            // This code will now execute on the main UI thread
+            addMessage(responseMessage, false);
+        });
     }
 
     @Override // Add Error to chat and log it out for debugging
