@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login">Giriş Yap</string>
+    <string name="register">Kayıt ol</string>
+    <string name="username_hint">Kullanıcı Adı</string>
+    <string name="password_hint">Şifre</string>
+    <string name="no_account">Hesabınız yok mu?</string>
+    <string name="action_settings">Ayarlar</string>
+</resources>
