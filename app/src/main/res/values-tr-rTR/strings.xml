@@ -1,14 +1,13 @@
 <resources>
-    <string name="app_name">EChatBotProjesi</string>
     <string name="send_button_text">Gönder</string>
     <string name="settings">Ayarlar</string>
-    <string name="clear_history_automatically_after">Geçmişi otomatik olarak temizle:</string>
+    <string name="clear_history_automatically_after">Sohbeti otomatik olarak temizle:</string>
     <string name="days_1">1 Gün</string>
     <string name="days_3">3 Gün</string>
     <string name="days_5">5 Gün</string>
     <string name="days_7">7 Gün</string>
     <string name="never">Asla</string>
-    <string name="clear_history_now">Geçmişi Şimdi Temizle</string>
+    <string name="clear_history_now">Sohbeti Şimdi Temizle</string>
     <string name="account">Hesap</string>
     <string name="stay_logged_in">Oturum açık kalsın</string>
     <string name="logout">Çıkış yap</string>
@@ -23,5 +22,5 @@
     <string name="no_account">Hesabınız yok mu?</string>
     <string name="register">Kayıt ol</string>
     <string name="action_settings">Ayarlar</string>
-    <string name="apperance">Görünüm</string>
+    <string name="theme">Tema</string>
 </resources>
