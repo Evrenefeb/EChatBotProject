@@ -204,17 +204,9 @@ public class SettingsActivity extends AppCompatActivity {
         Locale locale = new Locale(lang);
 
         // For API 25+ (Android 7.1 and higher): AppCompat provides backward compatibility
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            // Create and set LocaleList
-            LocaleListCompat appLocales = LocaleListCompat.create(locale);
-            AppCompatDelegate.setApplicationLocales(appLocales);
-        } else {
-            // For older versions - direct configuration update
-            Resources resources = getResources();
-            Configuration config = resources.getConfiguration();
-            config.locale = locale;
-            resources.updateConfiguration(config, resources.getDisplayMetrics());
-        }
+        // Create and set LocaleList
+        LocaleListCompat appLocales = LocaleListCompat.create(locale);
+        AppCompatDelegate.setApplicationLocales(appLocales);
 
         // Update the app context configuration
         updateConfiguration(this, locale);
@@ -232,17 +224,12 @@ public class SettingsActivity extends AppCompatActivity {
         Resources resources = context.getResources();
         Configuration configuration = resources.getConfiguration();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            configuration.setLocale(locale);
+        configuration.setLocale(locale);
 
-            LocaleList localeList = new LocaleList(locale);
-            LocaleList.setDefault(localeList);
-            configuration.setLocales(localeList);
+        LocaleList localeList = new LocaleList(locale);
+        LocaleList.setDefault(localeList);
+        configuration.setLocales(localeList);
 
-            context.createConfigurationContext(configuration);
-        } else {
-            configuration.locale = locale;
-            resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-        }
+        context.createConfigurationContext(configuration);
     }
 }
