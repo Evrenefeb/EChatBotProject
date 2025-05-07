@@ -28,7 +28,7 @@ public class GeminiHelper {
     private GenerativeModel generativeModel;
     private final ModelResponseCallback callback;
 
-    // Cosntructor
+    // Constructor
     public GeminiHelper(String API_KEY, String modelName, ModelResponseCallback callback){
         this.API_KEY = API_KEY;
         this.modelName = modelName;

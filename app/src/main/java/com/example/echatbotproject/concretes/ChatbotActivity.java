@@ -140,18 +140,20 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
     private void checkForAutoClearHistory() {
         String interval = sharedPreferences.getString("clearHistoryInterval", "never");
         long cutoffTime = 0;
-
         long currentTime = new Date().getTime();
 
         switch (interval) {
-            case "30":
-                cutoffTime = currentTime - TimeUnit.DAYS.toMillis(30);
+            case "1":
+                cutoffTime = currentTime - TimeUnit.DAYS.toMillis(1);
                 break;
-            case "60":
-                cutoffTime = currentTime - TimeUnit.DAYS.toMillis(60);
+            case "3":
+                cutoffTime = currentTime - TimeUnit.DAYS.toMillis(3);
                 break;
-            case "90":
-                cutoffTime = currentTime - TimeUnit.DAYS.toMillis(90);
+            case "5":
+                cutoffTime = currentTime - TimeUnit.DAYS.toMillis(5);
+                break;
+            case "7":
+                cutoffTime = currentTime - TimeUnit.DAYS.toMillis(7);
                 break;
             case "never":
             default:

@@ -1,9 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="login">Giriş Yap</string>
-    <string name="register">Kayıt ol</string>
+    <string name="app_name">EChatBotProjesi</string>
+    <string name="send_button_text">Gönder</string>
+    <string name="settings">Ayarlar</string>
+    <string name="clear_history_automatically_after">Geçmişi otomatik olarak temizle:</string>
+    <string name="days_1">1 Gün</string>
+    <string name="days_3">3 Gün</string>
+    <string name="days_5">5 Gün</string>
+    <string name="days_7">7 Gün</string>
+    <string name="never">Asla</string>
+    <string name="clear_history_now">Geçmişi Şimdi Temizle</string>
+    <string name="account">Hesap</string>
+    <string name="stay_logged_in">Oturum açık kalsın</string>
+    <string name="logout">Çıkış yap</string>
+    <string name="save_settings">Ayarları Kaydet</string>
+    <string name="dark_mode">Karanlık Mod</string>
+    <string name="settings_saved">Ayarlar Kaydedildi</string>
+    <string name="chat_history_will_be_cleared">Sohbet geçmişi sohbete döndüğünüzde temizlenecek.</string>
+    <string name="chatbot_prompt">Aradığınız her şeyi sorun</string>
     <string name="username_hint">Kullanıcı Adı</string>
     <string name="password_hint">Şifre</string>
+    <string name="login">Giriş Yap</string>
     <string name="no_account">Hesabınız yok mu?</string>
+    <string name="register">Kayıt ol</string>
     <string name="action_settings">Ayarlar</string>
+    <string name="apperance">Görünüm</string>
 </resources>

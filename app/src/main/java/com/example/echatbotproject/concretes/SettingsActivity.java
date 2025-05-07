@@ -18,12 +18,12 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    // Properties
     private Switch switchDarkMode;
     private RadioGroup radioGroupClearHistory;
-    private RadioButton radio30Days;
-    private RadioButton radio60Days;
-    private RadioButton radio90Days;
+    private RadioButton radio1Day;
+    private RadioButton radio3Days;
+    private RadioButton radio5Days;
+    private RadioButton radio7Days;
     private RadioButton radioNever;
     private Switch switchStayLoggedIn;
     private Button buttonClearHistoryNow;
@@ -37,12 +37,12 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        // Initialize UI elements
         switchDarkMode = findViewById(R.id.switchDarkMode);
         radioGroupClearHistory = findViewById(R.id.radioGroupClearHistory);
-        radio30Days = findViewById(R.id.radio30Days);
-        radio60Days = findViewById(R.id.radio60Days);
-        radio90Days = findViewById(R.id.radio90Days);
+        radio1Day = findViewById(R.id.radio1Day);
+        radio3Days = findViewById(R.id.radio3Days);
+        radio5Days = findViewById(R.id.radio5Days);
+        radio7Days = findViewById(R.id.radio7Days);
         radioNever = findViewById(R.id.radioNever);
         switchStayLoggedIn = findViewById(R.id.switchStayLoggedIn);
         buttonClearHistoryNow = findViewById(R.id.buttonClearHistoryNow);
@@ -51,13 +51,11 @@ public class SettingsActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE);
 
-        // Load saved settings
         loadSettings();
 
-        // Initialize Event Listeners (only for immediate actions like Logout and Clear Now)
         buttonClearHistoryNow.setOnClickListener(v -> {
             sharedPreferences.edit().putBoolean("clearHistoryNow", true).apply();
-            Toast.makeText(this, "Chat history will be cleared when you return to the chat.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.chat_history_will_be_cleared, Toast.LENGTH_SHORT).show();
         });
 
         buttonLogout.setOnClickListener(v -> {
@@ -70,30 +68,28 @@ public class SettingsActivity extends AppCompatActivity {
         buttonSave.setOnClickListener(v -> {
             saveSettings();
             applyTheme(switchDarkMode.isChecked());
-            Toast.makeText(this, "Settings Saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.settings_saved, Toast.LENGTH_SHORT).show();
         });
-
-
     }
 
     private void loadSettings() {
-        // Load dark mode preference
         boolean darkMode = sharedPreferences.getBoolean("darkMode", false);
         switchDarkMode.setChecked(darkMode);
         applyTheme(darkMode);
-        // TODO: Apply dark mode theme based on preference
 
-        // Load clear history preference
         String clearHistoryInterval = sharedPreferences.getString("clearHistoryInterval", "never");
         switch (clearHistoryInterval) {
-            case "30":
-                radio30Days.setChecked(true);
+            case "1":
+                radio1Day.setChecked(true);
                 break;
-            case "60":
-                radio60Days.setChecked(true);
+            case "3":
+                radio3Days.setChecked(true);
                 break;
-            case "90":
-                radio90Days.setChecked(true);
+            case "5":
+                radio5Days.setChecked(true);
+                break;
+            case "7":
+                radio7Days.setChecked(true);
                 break;
             case "never":
             default:
@@ -101,10 +97,8 @@ public class SettingsActivity extends AppCompatActivity {
                 break;
         }
 
-        // Load stay logged in preference
-        boolean stayLoggedIn = sharedPreferences.getBoolean("stayLoggedIn", true); // Default to true
+        boolean stayLoggedIn = sharedPreferences.getBoolean("stayLoggedIn", true);
         switchStayLoggedIn.setChecked(stayLoggedIn);
-        // TODO: Implement actual stay logged in logic if needed beyond Firebase default
     }
 
     private void saveSettings() {
@@ -112,12 +106,14 @@ public class SettingsActivity extends AppCompatActivity {
         editor.putBoolean("darkMode", switchDarkMode.isChecked());
 
         String clearHistoryInterval = "never";
-        if (radio30Days.isChecked()) {
-            clearHistoryInterval = "30";
-        } else if (radio60Days.isChecked()) {
-            clearHistoryInterval = "60";
-        } else if (radio90Days.isChecked()) {
-            clearHistoryInterval = "90";
+        if (radio1Day.isChecked()) {
+            clearHistoryInterval = "1";
+        } else if (radio3Days.isChecked()) {
+            clearHistoryInterval = "3";
+        } else if (radio5Days.isChecked()) {
+            clearHistoryInterval = "5";
+        } else if (radio7Days.isChecked()) {
+            clearHistoryInterval = "7";
         }
         editor.putString("clearHistoryInterval", clearHistoryInterval);
 
