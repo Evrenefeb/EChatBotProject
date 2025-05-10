@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".concretes.app.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -10,25 +10,30 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EChatBotProject"
-        tools:targetApi="31">
+        android:theme="@style/Theme.EChatBotProject" tools:targetApi="31">
         <activity
-            android:name=".LoginRegisterActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name=".concretes.activities.LoginRegisterActivity"
+            android:exported="true"
+            android:theme="@style/Theme.EChatBotProject"> <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity
-            android:name=".ChatbotActivity"
-            android:exported="false" />
+            android:name=".concretes.activities.ChatbotActivity"
+            android:exported="true"
+            android:theme="@style/Theme.EChatBotProject.ActionBar"> <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
-            android:name=".SettingsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-    </application>
+            android:name=".concretes.activities.SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.EChatBotProject"
+            /> <activity
+        android:name=".concretes.activities.MainActivity"
+        android:exported="false"
+        android:theme="@style/Theme.EChatBotProject" /> </application>
 
 </manifest>

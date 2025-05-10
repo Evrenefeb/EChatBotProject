@@ -1,8 +1,30 @@
 <resources>
-    <string name="app_name">EChatBotProject</string>
-    <string name="login">Login</string>
-    <string name="register">Register</string>
+    <string name="app_name" translatable="false">EChatBotProject</string>
+    <string name="send_button_text">Send</string>
+    <string name="settings">Settings</string>
+    <string name="clear_history_automatically_after">Clear chat automatically after:</string>
+    <string name="days_1">1 Day</string>
+    <string name="days_3">3 Days</string>
+    <string name="days_5">5 Days</string>
+    <string name="days_7">7 Days</string>
+    <string name="never">Never</string>
+    <string name="clear_history_now">Clear Chat Now</string>
+    <string name="account">Account</string>
+    <string name="stay_logged_in">Stay logged in</string>
+    <string name="logout">Logout</string>
+    <string name="save_settings">Save Settings</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="settings_saved">Settings Saved</string>
+    <string name="chat_history_will_be_cleared">Chat history will be cleared when you return to the chat.</string>
+    <string name="chatbot_prompt">Ask anything and everything</string>
     <string name="username_hint">Username</string>
     <string name="password_hint">Password</string>
+    <string name="login">Login</string>
     <string name="no_account">Don\'t have an account?</string>
+    <string name="register">Register</string>
+    <string name="action_settings">Settings</string>
+    <string name="theme">Theme</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="turkish">Turkish</string>>
 </resources>

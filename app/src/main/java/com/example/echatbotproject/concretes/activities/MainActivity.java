@@ -1,4 +1,4 @@
-package com.example.echatbotproject;
+package com.example.echatbotproject.concretes.activities;
 
 import android.os.Bundle;
 
@@ -8,7 +8,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.echatbotproject.R;
+
 public class MainActivity extends AppCompatActivity {
+
+
+    // MAIN ACTIVITY
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
