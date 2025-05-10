@@ -1,4 +1,4 @@
-package com.example.echatbotproject.concretes;
+package com.example.echatbotproject.concretes.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;

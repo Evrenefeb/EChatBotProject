@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".concretes.MyApplication"
+        android:name=".concretes.app.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EChatBotProject" tools:targetApi="31">
         <activity
-            android:name=".concretes.LoginRegisterActivity"
+            android:name=".concretes.activities.LoginRegisterActivity"
             android:exported="true"
             android:theme="@style/Theme.EChatBotProject"> <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
         </intent-filter>
         </activity>
         <activity
-            android:name=".concretes.ChatbotActivity"
+            android:name=".concretes.activities.ChatbotActivity"
             android:exported="true"
             android:theme="@style/Theme.EChatBotProject.ActionBar"> <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -28,11 +28,11 @@
         </intent-filter>
         </activity>
         <activity
-            android:name=".concretes.SettingsActivity"
+            android:name=".concretes.activities.SettingsActivity"
             android:exported="false"
             android:theme="@style/Theme.EChatBotProject"
             /> <activity
-        android:name=".concretes.MainActivity"
+        android:name=".concretes.activities.MainActivity"
         android:exported="false"
         android:theme="@style/Theme.EChatBotProject" /> </application>
 

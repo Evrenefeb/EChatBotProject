@@ -1,4 +1,4 @@
-package com.example.echatbotproject.concretes;
+package com.example.echatbotproject.concretes.app;
 
 import android.app.Application;
 

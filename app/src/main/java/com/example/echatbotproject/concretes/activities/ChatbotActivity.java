@@ -1,4 +1,4 @@
-package com.example.echatbotproject.concretes;
+package com.example.echatbotproject.concretes.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
