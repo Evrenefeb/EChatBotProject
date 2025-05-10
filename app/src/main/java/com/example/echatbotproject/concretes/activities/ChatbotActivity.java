@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -46,38 +47,7 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
     private GeminiHelper geminiHelper;
     private SharedPreferences sharedPreferences;
     private Gson gson;
-
     private static final String CHAT_HISTORY_KEY = "chatHistory";
-
-    // Overriden Methods
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        gson = new Gson();
-        loadHistory(); // Load history on create
-        init();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        boolean clearHistoryNow = sharedPreferences.getBoolean("clearHistoryNow", false);
-        if (clearHistoryNow) {
-            chatMessages.clear();
-            saveHistory(); // Save the cleared history
-            chatAdapter.notifyDataSetChanged();
-            sharedPreferences.edit().putBoolean("clearHistoryNow", false).apply(); // Reset the flag
-        }
-        checkForAutoClearHistory(); // Check for auto-clear on resume
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        saveHistory(); // Save history when activity is paused
-    }
 
     // Private Methods
 
@@ -215,6 +185,36 @@ public class ChatbotActivity extends AppCompatActivity implements ModelResponseC
     public void onDestroy() {
         super.onDestroy();
     }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        gson = new Gson();
+        loadHistory(); // Load history on create
+        init();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        boolean clearHistoryNow = sharedPreferences.getBoolean("clearHistoryNow", false);
+        if (clearHistoryNow) {
+            chatMessages.clear();
+            saveHistory(); // Save the cleared history
+            chatAdapter.notifyDataSetChanged();
+            sharedPreferences.edit().putBoolean("clearHistoryNow", false).apply(); // Reset the flag
+        }
+        checkForAutoClearHistory(); // Check for auto-clear on resume
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveHistory(); // Save history when activity is paused
+    }
+
 
     // Event Listeners
     private void sendOnClickEvent() {

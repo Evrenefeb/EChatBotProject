@@ -7,6 +7,8 @@ import com.google.firebase.FirebaseApp;
 
 public class MyApplication extends Application {
 
+    // MAIN APPLICATION
+
     @Override
     public void onCreate() {
         super.onCreate();

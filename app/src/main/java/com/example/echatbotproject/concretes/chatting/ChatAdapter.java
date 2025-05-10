@@ -15,11 +15,14 @@ import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHolder> {
 
+    // Properties
     private final List<ChatMessage> messages;
 
     public ChatAdapter(List<ChatMessage> messages) {
         this.messages = messages;
     }
+
+    // Overriden Methods
 
     @NonNull
     @Override
@@ -47,6 +50,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
     public int getItemCount() {
         return messages.size();
     }
+
+    // Inner Classes
 
     static class MessageViewHolder extends RecyclerView.ViewHolder {
         TextView messageTextView;

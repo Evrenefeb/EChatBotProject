@@ -29,6 +29,7 @@ import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    // Properties
     private Switch switchDarkMode;
     private Spinner languageSpinner;
     private RadioGroup radioGroupClearHistory;
@@ -41,9 +42,10 @@ public class SettingsActivity extends AppCompatActivity {
     private Button buttonClearHistoryNow;
     private Button buttonLogout;
     private Button buttonSave;
-
     private SharedPreferences sharedPreferences;
-    private String currentLanguage = "en"; // Default to English
+    private String currentLanguage = "en";
+
+    // Overriden Methods
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -118,6 +120,8 @@ public class SettingsActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.settings_saved, Toast.LENGTH_SHORT).show();
         });
     }
+
+    // Private Methods
 
     private void loadSettings() {
         boolean darkMode = sharedPreferences.getBoolean("darkMode", false);
@@ -195,30 +199,15 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Set the app's locale using modern Android API approaches
-     * @param lang Language code (e.g., "en", "tr")
-     */
     public void setLocale(String lang) {
         Locale locale = new Locale(lang);
-
-        // For API 25+ (Android 7.1 and higher): AppCompat provides backward compatibility
         // Create and set LocaleList
         LocaleListCompat appLocales = LocaleListCompat.create(locale);
         AppCompatDelegate.setApplicationLocales(appLocales);
-
-        // Update the app context configuration
         updateConfiguration(this, locale);
-
-        // Restart activity to apply changes
         recreate();
     }
 
-    /**
-     * Helper method to update configuration for all Android versions
-     * @param context Application context
-     * @param locale The locale to set
-     */
     private void updateConfiguration(Context context, Locale locale) {
         Resources resources = context.getResources();
         Configuration configuration = resources.getConfiguration();

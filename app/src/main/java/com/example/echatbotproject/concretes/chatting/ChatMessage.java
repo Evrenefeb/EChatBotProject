@@ -3,6 +3,8 @@ package com.example.echatbotproject.concretes.chatting;
 import java.util.Date;
 
 public class ChatMessage {
+
+    // Properties
     private String message;
     private boolean isUser;
     private long timestamp; // Add this
@@ -13,6 +15,7 @@ public class ChatMessage {
         this.timestamp = new Date().getTime(); // Initialize with the current time
     }
 
+    // Getter Setter
     public String getMessage() {
         return message;
     }

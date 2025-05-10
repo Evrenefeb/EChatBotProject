@@ -12,6 +12,9 @@ import com.example.echatbotproject.R;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    // MAIN ACTIVITY
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

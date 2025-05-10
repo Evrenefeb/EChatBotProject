@@ -22,6 +22,7 @@ import java.util.Objects;
 
 public class LoginRegisterActivity extends AppCompatActivity {
 
+    // Properties
     private EditText editTextUsername;
     private EditText editTextPassword;
     private Button buttonLogin;
@@ -30,40 +31,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private SharedPreferences sharedPreferences;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        // Apply saved theme as early as possible
-        sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        boolean darkMode = sharedPreferences.getBoolean("darkMode", false);
-        applyTheme(darkMode);
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_register);
-
-        mAuth = FirebaseAuth.getInstance();
-
-        // Check if user is already logged in and "Stay logged in" is enabled
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        boolean stayLoggedIn = sharedPreferences.getBoolean("stayLoggedIn", true); // Default to true
-
-        if (currentUser != null && stayLoggedIn) {
-            Intent intent = new Intent(LoginRegisterActivity.this, ChatbotActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
-        editTextUsername = findViewById(R.id.editTextUsername);
-        editTextPassword = findViewById(R.id.editTextPassword);
-        buttonLogin = findViewById(R.id.buttonLogin);
-        buttonRegister = findViewById(R.id.buttonRegister);
-        progressBar = findViewById(R.id.progressBar);
-
-        buttonLogin.setOnClickListener(v -> loginOnClickEvent());
-        buttonRegister.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginRegisterActivity.this, MainActivity.class);
-            startActivity(intent);
-        });
-    }
+    // Private Methods
 
     private void applyTheme(boolean isDarkMode) {
         if (isDarkMode) {
@@ -114,5 +82,42 @@ public class LoginRegisterActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    // Overriden Methods
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        // Apply saved theme as early as possible
+        sharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        boolean darkMode = sharedPreferences.getBoolean("darkMode", false);
+        applyTheme(darkMode);
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login_register);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        // Check if user is already logged in and "Stay logged in" is enabled
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        boolean stayLoggedIn = sharedPreferences.getBoolean("stayLoggedIn", true); // Default to true
+
+        if (currentUser != null && stayLoggedIn) {
+            Intent intent = new Intent(LoginRegisterActivity.this, ChatbotActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        editTextUsername = findViewById(R.id.editTextUsername);
+        editTextPassword = findViewById(R.id.editTextPassword);
+        buttonLogin = findViewById(R.id.buttonLogin);
+        buttonRegister = findViewById(R.id.buttonRegister);
+        progressBar = findViewById(R.id.progressBar);
+
+        buttonLogin.setOnClickListener(v -> loginOnClickEvent());
+        buttonRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginRegisterActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
     }
 }
