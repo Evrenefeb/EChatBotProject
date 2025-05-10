@@ -48,12 +48,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/playfairdisplay_regular"
             android:hint="@string/chatbot_prompt" />
 
         <Button
             android:id="@+id/buttonSend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/playfairdisplay_regular"
             android:text="@string/send_button_text" />
 
     </LinearLayout>
