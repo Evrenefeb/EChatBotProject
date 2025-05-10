@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:fontFamily="@font/playfairdisplay_regular"
+        android:fontFamily="@font/calsans_regular"
         app:title="@string/settings" />
 
     <TextView
@@ -60,30 +60,35 @@
             android:id="@+id/radio1Day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/calsans_regular"
             android:text="@string/days_1" />
 
         <RadioButton
             android:id="@+id/radio3Days"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/calsans_regular"
             android:text="@string/days_3" />
 
         <RadioButton
             android:id="@+id/radio5Days"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/calsans_regular"
             android:text="@string/days_5" />
 
         <RadioButton
             android:id="@+id/radio7Days"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/calsans_regular"
             android:text="@string/days_7" />
 
         <RadioButton
             android:id="@+id/radioNever"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/calsans_regular"
             android:text="@string/never" />
 
     </RadioGroup>

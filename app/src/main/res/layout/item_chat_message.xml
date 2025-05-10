@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:background="@android:color/holo_blue_light"
-        android:fontFamily="@font/playfairdisplay_regular"
+        android:fontFamily="@font/calsans_regular"
         android:padding="8dp"
         android:text="Sample Message" />
 
